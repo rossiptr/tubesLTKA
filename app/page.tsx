@@ -103,19 +103,17 @@ const MoodTracker = () => {
             <Heart className="text-pink-500" size={40} />
             My Mood Tracker
           </h1>
-          <p className="text-gray-600">
-            Track your daily emotions and build better mental health habits
-          </p>
+          <p className="text-gray-600">Track your daily emotions and build better mental health habits</p>
         </div>
 
-        {/* Stats */}
+        {/* Stats Card */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
             <Calendar className="text-blue-500" size={20} />
             Weekly Summary ({stats.total} entries)
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {moodOptions.slice(0, 4).map((mood) => {
+            {moodOptions.slice(0, 4).map(mood => {
               const count = stats.counts[mood.value] || 0;
               const IconComponent = mood.icon;
               return (
@@ -129,11 +127,12 @@ const MoodTracker = () => {
           </div>
         </div>
 
-        {/* Add Mood */}
+        {/* Add Mood Form */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <h3 className="text-xl font-semibold text-gray-800 mb-6">How are you feeling today?</h3>
+          
           <div className="space-y-6">
-            {/* Date */}
+            {/* Date Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
               <input
@@ -148,7 +147,7 @@ const MoodTracker = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Select your mood</label>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                {moodOptions.map((mood) => {
+                {moodOptions.map(mood => {
                   const IconComponent = mood.icon;
                   return (
                     <button
@@ -168,15 +167,17 @@ const MoodTracker = () => {
               </div>
             </div>
 
-            {/* Note */}
+            {/* Note Input */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Add a note (optional)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Add a note (optional)
+              </label>
               <textarea
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="What's on your mind? Any specific reason for this mood?"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                rows={3}
+                rows="3"
               />
             </div>
 
@@ -184,7 +185,7 @@ const MoodTracker = () => {
             <button
               onClick={saveMood}
               disabled={!selectedMood}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-500 disabled:hover:to-pink-500"
             >
               Save Mood Entry
             </button>
@@ -194,6 +195,7 @@ const MoodTracker = () => {
         {/* Mood History */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <h3 className="text-xl font-semibold text-gray-800 mb-6">Mood History</h3>
+          
           {moods.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <Smile className="mx-auto mb-4 text-gray-300" size={48} />
@@ -201,14 +203,11 @@ const MoodTracker = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {moods.slice(0, 10).map((mood) => {
+              {moods.slice(0, 10).map(mood => {
                 const moodData = getMoodIcon(mood.mood);
                 const IconComponent = moodData.icon;
                 return (
-                  <div
-                    key={mood.id}
-                    className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                  >
+                  <div key={mood.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <div className={`${moodData.bg} p-2 rounded-lg`}>
                       <IconComponent className={moodData.color} size={24} />
                     </div>
@@ -218,7 +217,9 @@ const MoodTracker = () => {
                         <span className="text-sm text-gray-500">{mood.date}</span>
                         <span className="text-xs text-gray-400">{mood.timestamp}</span>
                       </div>
-                      {mood.note && <p className="text-gray-600 text-sm">{mood.note}</p>}
+                      {mood.note && (
+                        <p className="text-gray-600 text-sm">{mood.note}</p>
+                      )}
                     </div>
                     <button
                       onClick={() => deleteMood(mood.id)}
@@ -229,11 +230,10 @@ const MoodTracker = () => {
                   </div>
                 );
               })}
+              
               {moods.length > 10 && (
                 <div className="text-center pt-4">
-                  <p className="text-gray-500 text-sm">
-                    Showing latest 10 entries of {moods.length} total
-                  </p>
+                  <p className="text-gray-500 text-sm">Showing latest 10 entries of {moods.length} total</p>
                 </div>
               )}
             </div>
