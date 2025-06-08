@@ -94,30 +94,33 @@ const MoodTracker = () => {
 
   const stats = getMoodStats();
 
-return (
-    <div style={styles.container}>
-      <div style={styles.mainContent}>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
-        <div style={styles.header}>
-          <h1 style={styles.title}>
-            ❤️ My Mood Tracker
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
+            <Heart className="text-pink-500" size={40} />
+            My Mood Tracker
           </h1>
-          <p style={styles.subtitle}>Track your daily emotions and build better mental health habits</p>
+          <p className="text-gray-600">Track your daily emotions and build better mental health habits</p>
         </div>
 
         {/* Stats Card */}
-        <div style={styles.card}>
-          <h3 style={{ fontSize: '1.3rem', fontWeight: '600', marginBottom: '15px', color: '#333' }}>
-            📅 Weekly Summary ({stats.total} entries)
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <Calendar className="text-blue-500" size={20} />
+            Weekly Summary ({stats.total} entries)
           </h3>
-          <div style={styles.statsGrid}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {moodOptions.slice(0, 4).map(mood => {
               const count = stats.counts[mood.value] || 0;
+              const IconComponent = mood.icon;
               return (
-                <div key={mood.value} style={styles.statItem}>
-                  <div style={styles.statEmoji}>{mood.emoji}</div>
-                  <div style={styles.statLabel}>{mood.label}</div>
-                  <div style={styles.statValue}>{count}</div>
+                <div key={mood.value} className={`${mood.bg} rounded-lg p-3 text-center`}>
+                  <IconComponent className={`${mood.color} mx-auto mb-1`} size={24} />
+                  <div className="text-sm font-medium text-gray-700">{mood.label}</div>
+                  <div className="text-lg font-bold text-gray-800">{count}</div>
                 </div>
               );
             })}
@@ -125,51 +128,56 @@ return (
         </div>
 
         {/* Add Mood Form */}
-        <div style={styles.card}>
-          <h3 style={{ fontSize: '1.3rem', fontWeight: '600', marginBottom: '25px', color: '#333' }}>
-            How are you feeling today?
-          </h3>
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <h3 className="text-xl font-semibold text-gray-800 mb-6">How are you feeling today?</h3>
           
-          <div>
+          <div className="space-y-6">
             {/* Date Input */}
-            <div style={styles.formSection}>
-              <label style={styles.label}>Date</label>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
               <input
                 type="date"
                 value={currentDate}
                 onChange={(e) => setCurrentDate(e.target.value)}
-                style={styles.input}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
             </div>
 
             {/* Mood Selection */}
-            <div style={styles.formSection}>
-              <label style={styles.label}>Select your mood</label>
-              <div style={styles.moodGrid}>
-                {moodOptions.map(mood => (
-                  <button
-                    key={mood.value}
-                    onClick={() => setSelectedMood(mood.value)}
-                    style={{
-                      ...styles.moodButton,
-                      ...(selectedMood === mood.value ? styles.moodButtonSelected : {})
-                    }}
-                  >
-                    <div style={styles.moodEmoji}>{mood.emoji}</div>
-                    <div style={styles.moodLabel}>{mood.label}</div>
-                  </button>
-                ))}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">Select your mood</label>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                {moodOptions.map(mood => {
+                  const IconComponent = mood.icon;
+                  return (
+                    <button
+                      key={mood.value}
+                      onClick={() => setSelectedMood(mood.value)}
+                      className={`p-4 rounded-xl border-2 transition-all duration-200 hover:scale-105 ${
+                        selectedMood === mood.value
+                          ? `${mood.bg} border-gray-400 shadow-md`
+                          : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                      }`}
+                    >
+                      <IconComponent className={`${mood.color} mx-auto mb-2`} size={28} />
+                      <div className="text-xs font-medium text-gray-700">{mood.label}</div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             {/* Note Input */}
-            <div style={styles.formSection}>
-              <label style={styles.label}>Add a note (optional)</label>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Add a note (optional)
+              </label>
               <textarea
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="What's on your mind? Any specific reason for this mood?"
-                style={styles.textarea}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                rows={3}  {/* Fixed: Changed from "3" to {3} */}
               />
             </div>
 
@@ -177,10 +185,7 @@ return (
             <button
               onClick={saveMood}
               disabled={!selectedMood}
-              style={{
-                ...styles.saveButton,
-                ...(selectedMood ? {} : styles.saveButtonDisabled)
-              }}
+              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-500 disabled:hover:to-pink-500"
             >
               Save Mood Entry
             </button>
@@ -188,36 +193,37 @@ return (
         </div>
 
         {/* Mood History */}
-        <div style={styles.card}>
-          <h3 style={{ fontSize: '1.3rem', fontWeight: '600', marginBottom: '20px', color: '#333' }}>
-            Mood History
-          </h3>
+        <div className="bg-white rounded-xl shadow-lg p-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-6">Mood History</h3>
           
           {moods.length === 0 ? (
-            <div style={styles.historyEmpty}>
-              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>😊</div>
+            <div className="text-center py-8 text-gray-500">
+              <Smile className="mx-auto mb-4 text-gray-300" size={48} />
               <p>No mood entries yet. Start tracking your emotions!</p>
             </div>
           ) : (
-            <div>
+            <div className="space-y-4">
               {moods.slice(0, 10).map(mood => {
-                const moodData = getMoodData(mood.mood);
+                const moodData = getMoodIcon(mood.mood);
+                const IconComponent = moodData.icon;
                 return (
-                  <div key={mood.id} style={styles.historyItem}>
-                    <div style={styles.historyEmoji}>{moodData.emoji}</div>
-                    <div style={styles.historyContent}>
-                      <div style={styles.historyHeader}>
-                        <span style={styles.historyMood}>{mood.mood}</span>
-                        <span style={styles.historyDate}>{mood.date}</span>
-                        <span style={{ fontSize: '0.8rem', color: '#999' }}>{mood.timestamp}</span>
+                  <div key={mood.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div className={`${moodData.bg} p-2 rounded-lg`}>
+                      <IconComponent className={moodData.color} size={24} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="font-semibold text-gray-800 capitalize">{mood.mood}</span>
+                        <span className="text-sm text-gray-500">{mood.date}</span>
+                        <span className="text-xs text-gray-400">{mood.timestamp}</span>
                       </div>
                       {mood.note && (
-                        <p style={styles.historyNote}>{mood.note}</p>
+                        <p className="text-gray-600 text-sm">{mood.note}</p>
                       )}
                     </div>
                     <button
                       onClick={() => deleteMood(mood.id)}
-                      style={styles.deleteButton}
+                      className="text-red-500 hover:text-red-700 text-sm font-medium px-2 py-1 hover:bg-red-50 rounded"
                     >
                       Delete
                     </button>
@@ -226,10 +232,8 @@ return (
               })}
               
               {moods.length > 10 && (
-                <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                  <p style={{ color: '#666', fontSize: '0.9rem' }}>
-                    Showing latest 10 entries of {moods.length} total
-                  </p>
+                <div className="text-center pt-4">
+                  <p className="text-gray-500 text-sm">Showing latest 10 entries of {moods.length} total</p>
                 </div>
               )}
             </div>
