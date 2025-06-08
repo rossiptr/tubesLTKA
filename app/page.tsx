@@ -128,7 +128,7 @@ export default function MoodTracker() {
             fontSize: '0.875rem',
             color: '#4b5563',
             margin: '0.25rem 0 0'
-          }}>Track your daily emotions and build better mental health habits</p>
+          }}>Track your daily emotions</p>
         </div>
 
         {/* Form */}
