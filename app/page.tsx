@@ -54,7 +54,7 @@ const MoodTracker = () => {
     setNote('');
   };
 
-  const deleteMood = (id) => {
+  const deleteMood = (id: number) => {
     const updatedMoods = moods.filter(mood => mood.id !== id);
     setMoods(updatedMoods);
     localStorage.setItem('moods', JSON.stringify(updatedMoods));
