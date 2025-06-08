@@ -72,7 +72,7 @@ const MoodTracker = () => {
 
   const getMoodIcon = (moodValue: string): MoodOption => {
     const mood = moodOptions.find((m) => m.value === moodValue);
-    return mood || moodOptions[3];
+    return mood || moodOptions[3]; // default to 'okay'
   };
 
   const getMoodStats = () => {
@@ -96,7 +96,6 @@ const MoodTracker = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
