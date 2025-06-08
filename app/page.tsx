@@ -23,13 +23,13 @@ type MoodOption = {
 };
 
 const moodOptions: MoodOption[] = [
-  { value: 'amazing', label: 'Amazing', icon: <Star size={20} />, color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.1)' },
-  { value: 'happy', label: 'Happy', icon: <Smile size={20} />, color: '#10b981', bg: 'rgba(16, 185, 129, 0.1)' },
-  { value: 'good', label: 'Good', icon: <Sun size={20} />, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.1)' },
-  { value: 'okay', label: 'Okay', icon: <Meh size={20} />, color: '#6b7280', bg: 'rgba(107, 114, 128, 0.1)' },
-  { value: 'sad', label: 'Sad', icon: <CloudRain size={20} />, color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)' },
-  { value: 'angry', label: 'Angry', icon: <Zap size={20} />, color: '#ef4444', bg: 'rgba(239, 68, 68, 0.1)' },
-  { value: 'anxious', label: 'Anxious', icon: <Frown size={20} />, color: '#d946ef', bg: 'rgba(217, 70, 239, 0.1)' }
+  { value: 'amazing', label: 'Amazing', icon: <Star size={16} />, color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.1)' },
+  { value: 'happy', label: 'Happy', icon: <Smile size={16} />, color: '#10b981', bg: 'rgba(16, 185, 129, 0.1)' },
+  { value: 'good', label: 'Good', icon: <Sun size={16} />, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.1)' },
+  { value: 'okay', label: 'Okay', icon: <Meh size={16} />, color: '#6b7280', bg: 'rgba(107, 114, 128, 0.1)' },
+  { value: 'sad', label: 'Sad', icon: <CloudRain size={16} />, color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)' },
+  { value: 'angry', label: 'Angry', icon: <Zap size={16} />, color: '#ef4444', bg: 'rgba(239, 68, 68, 0.1)' },
+  { value: 'anxious', label: 'Anxious', icon: <Frown size={16} />, color: '#d946ef', bg: 'rgba(217, 70, 239, 0.1)' }
 ];
 
 export default function MoodTracker() {
@@ -90,7 +90,7 @@ export default function MoodTracker() {
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)',
-      padding: '2rem',
+      padding: '1rem',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       display: 'flex',
       justifyContent: 'center',
@@ -98,99 +98,101 @@ export default function MoodTracker() {
     }}>
       <div style={{
         width: '95%',
-        maxWidth: '1200px',
+        maxWidth: '1000px',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: '1.5rem'
+        gap: '1rem',
+        height: '90vh'
       }}>
         {/* Left Column - Header and Form */}
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '1.5rem'
+          gap: '1rem',
+          height: '100%'
         }}>
           {/* Header */}
           <div style={{
             background: 'rgba(255, 255, 255, 0.9)',
-            borderRadius: '16px',
-            padding: '1.5rem',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            borderRadius: '12px',
+            padding: '1rem',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
             backdropFilter: 'blur(8px)',
             textAlign: 'center'
           }}>
-            <Heart color="#ec4899" size={40} fill="#ec4899" style={{ marginBottom: '0.5rem' }} />
-            <h1 style={{
-              fontSize: '2rem',
-              fontWeight: '700',
-              color: '#1f2937',
-              margin: '0.5rem 0',
-              background: 'linear-gradient(90deg, #ec4899, #f59e0b)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>My Mood Tracker</h1>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <Heart color="#ec4899" size={24} fill="#ec4899" />
+              <h1 style={{
+                fontSize: '1.5rem',
+                fontWeight: '700',
+                margin: 0,
+                background: 'linear-gradient(90deg, #ec4899, #f59e0b)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>My Mood Tracker</h1>
+            </div>
             <p style={{
-              fontSize: '1rem',
+              fontSize: '0.875rem',
               color: '#4b5563',
-              lineHeight: '1.5',
-              margin: 0
-            }}>Track your daily emotions and build better mental health habits</p>
+              margin: '0.25rem 0 0'
+            }}>Track your daily emotions</p>
           </div>
 
           {/* Stats Card */}
           <div style={{
             background: 'rgba(255, 255, 255, 0.9)',
-            borderRadius: '16px',
-            padding: '1.5rem',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-            backdropFilter: 'blur(8px)'
+            borderRadius: '12px',
+            padding: '1rem',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+            backdropFilter: 'blur(8px)',
+            flex: '0 0 auto'
           }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem',
-              marginBottom: '1.25rem'
+              gap: '0.5rem',
+              marginBottom: '0.75rem'
             }}>
-              <Calendar color="#3b82f6" size={22} />
+              <Calendar color="#3b82f6" size={18} />
               <h3 style={{
-                fontSize: '1.125rem',
+                fontSize: '1rem',
                 fontWeight: '600',
                 color: '#1f2937',
                 margin: 0
-              }}>Weekly Summary ({stats.total} entries)</h3>
+              }}>Weekly Summary ({stats.total})</h3>
             </div>
             
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-              gap: '1rem'
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '0.5rem'
             }}>
-              {moodOptions.map(mood => {
+              {moodOptions.slice(0,4).map(mood => {
                 const count = stats.counts[mood.value] || 0;
                 return (
                   <div key={mood.value} style={{
                     background: mood.bg,
-                    borderRadius: '12px',
-                    padding: '1rem',
+                    borderRadius: '8px',
+                    padding: '0.5rem',
                     textAlign: 'center',
-                    border: `1px solid rgba(255,255,255,0.3)`,
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+                    border: `1px solid rgba(255,255,255,0.3)`
                   }}>
                     <div style={{ 
                       display: 'flex', 
                       justifyContent: 'center',
-                      marginBottom: '0.5rem',
+                      marginBottom: '0.25rem',
                       color: mood.color
                     }}>
                       {mood.icon}
                     </div>
                     <div style={{
-                      fontSize: '0.875rem',
+                      fontSize: '0.75rem',
                       fontWeight: '500',
                       color: '#374151',
                       marginBottom: '0.25rem'
                     }}>{mood.label}</div>
                     <div style={{
-                      fontSize: '1.25rem',
+                      fontSize: '1rem',
                       fontWeight: '700',
                       color: '#111827'
                     }}>{count}</div>
@@ -203,28 +205,30 @@ export default function MoodTracker() {
           {/* Add Mood Form */}
           <div style={{
             background: 'rgba(255, 255, 255, 0.9)',
-            borderRadius: '16px',
-            padding: '1.5rem',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            borderRadius: '12px',
+            padding: '1rem',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
             backdropFilter: 'blur(8px)',
-            flex: 1
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column'
           }}>
             <h3 style={{
-              fontSize: '1.25rem',
+              fontSize: '1rem',
               fontWeight: '600',
               color: '#1f2937',
-              marginBottom: '1.5rem'
+              marginBottom: '1rem'
             }}>How are you feeling today?</h3>
             
-            <div style={{ display: 'grid', gap: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}>
               {/* Date Input */}
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   fontWeight: '500',
                   color: '#374151',
-                  marginBottom: '0.5rem'
+                  marginBottom: '0.25rem'
                 }}>Date</label>
                 <input
                   type="date"
@@ -232,13 +236,12 @@ export default function MoodTracker() {
                   onChange={(e) => setCurrentDate(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '0.75rem 1rem',
+                    padding: '0.5rem',
                     border: '1px solid #e5e7eb',
-                    borderRadius: '12px',
-                    fontSize: '1rem',
+                    borderRadius: '8px',
+                    fontSize: '0.875rem',
                     background: 'rgba(255,255,255,0.7)',
-                    outline: 'none',
-                    transition: 'all 0.2s'
+                    outline: 'none'
                   }}
                 />
               </div>
@@ -247,39 +250,37 @@ export default function MoodTracker() {
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   fontWeight: '500',
                   color: '#374151',
-                  marginBottom: '0.75rem'
-                }}>Select your mood</label>
+                  marginBottom: '0.5rem'
+                }}>Mood</label>
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
-                  gap: '0.75rem'
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '0.5rem'
                 }}>
                   {moodOptions.map(mood => (
                     <button
                       key={mood.value}
                       onClick={() => setSelectedMood(mood.value)}
                       style={{
-                        padding: '0.75rem',
-                        borderRadius: '12px',
+                        padding: '0.5rem',
+                        borderRadius: '8px',
                         border: `1px solid ${selectedMood === mood.value ? mood.color : '#e5e7eb'}`,
                         background: selectedMood === mood.value ? mood.bg : 'rgba(255,255,255,0.7)',
-                        transition: 'all 0.2s',
                         cursor: 'pointer',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                        boxShadow: selectedMood === mood.value ? `0 0 0 3px ${mood.color}20` : 'none'
+                        gap: '0.25rem'
                       }}
                     >
                       <div style={{ color: mood.color }}>
                         {mood.icon}
                       </div>
                       <div style={{
-                        fontSize: '0.75rem',
+                        fontSize: '0.6875rem',
                         fontWeight: '500',
                         color: '#374151'
                       }}>{mood.label}</div>
@@ -289,33 +290,32 @@ export default function MoodTracker() {
               </div>
 
               {/* Note Input */}
-              <div>
+              <div style={{ flex: 1 }}>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   fontWeight: '500',
                   color: '#374151',
-                  marginBottom: '0.5rem'
+                  marginBottom: '0.25rem'
                 }}>
-                  Add a note (optional)
+                  Note (optional)
                 </label>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  placeholder="What's on your mind? Any specific reason for this mood?"
+                  placeholder="What's on your mind?"
                   style={{
                     width: '100%',
-                    padding: '0.75rem 1rem',
+                    height: '100%',
+                    padding: '0.5rem',
                     border: '1px solid #e5e7eb',
-                    borderRadius: '12px',
-                    fontSize: '1rem',
-                    minHeight: '100px',
-                    resize: 'vertical',
+                    borderRadius: '8px',
+                    fontSize: '0.875rem',
                     background: 'rgba(255,255,255,0.7)',
                     outline: 'none',
-                    transition: 'all 0.2s'
+                    resize: 'none',
+                    boxSizing: 'border-box'
                   }}
-                  rows={3}
                 />
               </div>
 
@@ -329,19 +329,17 @@ export default function MoodTracker() {
                     ? `linear-gradient(135deg, ${selectedMoodData.color} 0%, #ec4899 100%)`
                     : '#e5e7eb',
                   color: 'white',
-                  padding: '0.875rem',
-                  borderRadius: '12px',
+                  padding: '0.5rem',
+                  borderRadius: '8px',
                   fontWeight: '600',
-                  fontSize: '1rem',
+                  fontSize: '0.875rem',
                   border: 'none',
                   cursor: selectedMood ? 'pointer' : 'not-allowed',
-                  transition: 'all 0.2s',
                   opacity: selectedMood ? 1 : 0.7,
-                  boxShadow: selectedMood ? '0 4px 12px rgba(236, 72, 153, 0.3)' : 'none',
-                  marginTop: '0.5rem'
+                  marginTop: 'auto'
                 }}
               >
-                Save Mood Entry
+                Save Entry
               </button>
             </div>
           </div>
@@ -350,24 +348,25 @@ export default function MoodTracker() {
         {/* Right Column - Mood History */}
         <div style={{
           background: 'rgba(255, 255, 255, 0.9)',
-          borderRadius: '16px',
-          padding: '1.5rem',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+          borderRadius: '12px',
+          padding: '1rem',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
           backdropFilter: 'blur(8px)',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          height: '100%'
         }}>
           <h3 style={{
-            fontSize: '1.25rem',
+            fontSize: '1rem',
             fontWeight: '600',
             color: '#1f2937',
-            marginBottom: '1.5rem'
-          }}>Mood History</h3>
+            marginBottom: '1rem'
+          }}>Recent Entries</h3>
           
           {moods.length === 0 ? (
             <div style={{
               textAlign: 'center',
-              padding: '2rem 0',
+              padding: '1rem 0',
               color: '#6b7280',
               flex: 1,
               display: 'flex',
@@ -375,73 +374,67 @@ export default function MoodTracker() {
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-              <Smile size={48} color="#d1d5db" style={{ margin: '0 auto 1rem' }} />
-              <p>No mood entries yet. Start tracking your emotions!</p>
+              <Smile size={32} color="#d1d5db" style={{ margin: '0 auto 0.5rem' }} />
+              <p style={{ fontSize: '0.875rem' }}>No entries yet</p>
             </div>
           ) : (
             <div style={{ 
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.75rem',
+              gap: '0.5rem',
               overflowY: 'auto',
               flex: 1,
-              paddingRight: '0.5rem'
+              paddingRight: '0.25rem'
             }}>
-              {moods.slice(0, 10).map(mood => {
+              {moods.slice(0, 8).map(mood => {
                 const moodData = moodOptions.find(m => m.value === mood.mood) || moodOptions[3];
                 return (
                   <div key={mood.id} style={{
                     display: 'flex',
                     alignItems: 'flex-start',
-                    gap: '1rem',
-                    padding: '1rem',
+                    gap: '0.75rem',
+                    padding: '0.75rem',
                     background: 'rgba(255,255,255,0.7)',
-                    borderRadius: '12px',
-                    transition: 'all 0.2s',
-                    border: '1px solid rgba(0,0,0,0.05)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                    borderRadius: '8px',
+                    border: '1px solid rgba(0,0,0,0.05)'
                   }}>
                     <div style={{
                       background: moodData.bg,
-                      padding: '0.5rem',
-                      borderRadius: '8px',
+                      padding: '0.25rem',
+                      borderRadius: '6px',
                       color: moodData.color,
-                      flexShrink: 0
+                      flexShrink: 0,
+                      display: 'flex'
                     }}>
                       {moodData.icon}
                     </div>
-                    <div style={{ flex: 1 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.5rem',
-                        marginBottom: '0.25rem',
+                        marginBottom: '0.125rem',
                         flexWrap: 'wrap'
                       }}>
                         <span style={{
                           fontWeight: '600',
                           color: '#1f2937',
-                          textTransform: 'capitalize'
+                          textTransform: 'capitalize',
+                          fontSize: '0.8125rem'
                         }}>{mood.mood}</span>
-                        <ChevronRight size={14} color="#9ca3af" />
-                        <span style={{
-                          fontSize: '0.875rem',
-                          color: '#6b7280'
-                        }}>{mood.date}</span>
+                        <ChevronRight size={12} color="#9ca3af" />
                         <span style={{
                           fontSize: '0.75rem',
-                          color: '#9ca3af',
-                          background: 'rgba(0,0,0,0.03)',
-                          padding: '0.25rem 0.5rem',
-                          borderRadius: '4px'
-                        }}>{mood.timestamp}</span>
+                          color: '#6b7280'
+                        }}>{mood.date}</span>
                       </div>
                       {mood.note && (
                         <p style={{
-                          fontSize: '0.875rem',
+                          fontSize: '0.75rem',
                           color: '#4b5563',
                           margin: 0,
-                          lineHeight: '1.5'
+                          lineHeight: '1.4',
+                          wordBreak: 'break-word'
                         }}>{mood.note}</p>
                       )}
                     </div>
@@ -452,31 +445,19 @@ export default function MoodTracker() {
                         background: 'none',
                         border: 'none',
                         cursor: 'pointer',
-                        padding: '0.5rem',
-                        borderRadius: '8px',
+                        padding: '0.25rem',
+                        borderRadius: '4px',
                         display: 'flex',
                         alignItems: 'center',
-                        transition: 'all 0.2s',
                         flexShrink: 0
                       }}
                       aria-label="Delete entry"
                     >
-                      <Trash2 size={18} />
+                      <Trash2 size={14} />
                     </button>
                   </div>
                 );
               })}
-              
-              {moods.length > 10 && (
-                <div style={{
-                  textAlign: 'center',
-                  paddingTop: '1rem',
-                  fontSize: '0.875rem',
-                  color: '#6b7280'
-                }}>
-                  <p>Showing latest 10 entries of {moods.length} total</p>
-                </div>
-              )}
             </div>
           )}
         </div>
