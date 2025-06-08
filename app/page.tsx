@@ -128,7 +128,7 @@ export default function MoodTracker() {
             fontSize: '0.875rem',
             color: '#4b5563',
             margin: '0.25rem 0 0'
-          }}>Track your daily emotions</p>
+          }}>Track your daily emotions and build better mental health habits</p>
         </div>
 
         {/* Form */}
@@ -199,7 +199,7 @@ export default function MoodTracker() {
             <textarea
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="What's on your mind?"
+              placeholder="What's on your mind? Any spesific reason for this mood?"
               style={{
                 padding: '0.5rem',
                 borderRadius: '8px',
