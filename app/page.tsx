@@ -90,257 +90,271 @@ export default function MoodTracker() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)',
       padding: '2rem',
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
     }}>
       <div style={{
-        maxWidth: '800px',
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
+        width: '95%',
+        maxWidth: '1200px',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
         gap: '1.5rem'
       }}>
-        {/* Header */}
+        {/* Left Column - Header and Form */}
         <div style={{
-          textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          gap: '0.5rem'
+          gap: '1.5rem'
         }}>
-          <Heart color="#ec4899" size={40} fill="#ec4899" />
-          <h1 style={{
-            fontSize: '2.25rem',
-            fontWeight: '700',
-            color: '#1f2937',
-            margin: 0,
-            background: 'linear-gradient(90deg, #ec4899, #f59e0b)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>My Mood Tracker</h1>
-          <p style={{
-            fontSize: '1rem',
-            color: '#4b5563',
-            maxWidth: '400px',
-            lineHeight: '1.5'
-          }}>Track your daily emotions and build better mental health habits</p>
+          {/* Header */}
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+            borderRadius: '16px',
+            padding: '1.5rem',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            backdropFilter: 'blur(8px)',
+            textAlign: 'center'
+          }}>
+            <Heart color="#ec4899" size={40} fill="#ec4899" style={{ marginBottom: '0.5rem' }} />
+            <h1 style={{
+              fontSize: '2rem',
+              fontWeight: '700',
+              color: '#1f2937',
+              margin: '0.5rem 0',
+              background: 'linear-gradient(90deg, #ec4899, #f59e0b)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>My Mood Tracker</h1>
+            <p style={{
+              fontSize: '1rem',
+              color: '#4b5563',
+              lineHeight: '1.5',
+              margin: 0
+            }}>Track your daily emotions and build better mental health habits</p>
+          </div>
+
+          {/* Stats Card */}
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+            borderRadius: '16px',
+            padding: '1.5rem',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            backdropFilter: 'blur(8px)'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              marginBottom: '1.25rem'
+            }}>
+              <Calendar color="#3b82f6" size={22} />
+              <h3 style={{
+                fontSize: '1.125rem',
+                fontWeight: '600',
+                color: '#1f2937',
+                margin: 0
+              }}>Weekly Summary ({stats.total} entries)</h3>
+            </div>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '1rem'
+            }}>
+              {moodOptions.slice(0, 4).map(mood => {
+                const count = stats.counts[mood.value] || 0;
+                return (
+                  <div key={mood.value} style={{
+                    background: mood.bg,
+                    borderRadius: '12px',
+                    padding: '1rem',
+                    textAlign: 'center',
+                    border: `1px solid rgba(255,255,255,0.3)`,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+                  }}>
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'center',
+                      marginBottom: '0.5rem',
+                      color: mood.color
+                    }}>
+                      {mood.icon}
+                    </div>
+                    <div style={{
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      color: '#374151',
+                      marginBottom: '0.25rem'
+                    }}>{mood.label}</div>
+                    <div style={{
+                      fontSize: '1.25rem',
+                      fontWeight: '700',
+                      color: '#111827'
+                    }}>{count}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Add Mood Form */}
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+            borderRadius: '16px',
+            padding: '1.5rem',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            backdropFilter: 'blur(8px)',
+            flex: 1
+          }}>
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: '600',
+              color: '#1f2937',
+              marginBottom: '1.5rem'
+            }}>How are you feeling today?</h3>
+            
+            <div style={{ display: 'grid', gap: '1.5rem' }}>
+              {/* Date Input */}
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  color: '#374151',
+                  marginBottom: '0.5rem'
+                }}>Date</label>
+                <input
+                  type="date"
+                  value={currentDate}
+                  onChange={(e) => setCurrentDate(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '12px',
+                    fontSize: '1rem',
+                    background: 'rgba(255,255,255,0.7)',
+                    outline: 'none',
+                    transition: 'all 0.2s'
+                  }}
+                />
+              </div>
+
+              {/* Mood Selection */}
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  color: '#374151',
+                  marginBottom: '0.75rem'
+                }}>Select your mood</label>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '0.75rem'
+                }}>
+                  {moodOptions.map(mood => (
+                    <button
+                      key={mood.value}
+                      onClick={() => setSelectedMood(mood.value)}
+                      style={{
+                        padding: '0.75rem',
+                        borderRadius: '12px',
+                        border: `1px solid ${selectedMood === mood.value ? mood.color : '#e5e7eb'}`,
+                        background: selectedMood === mood.value ? mood.bg : 'rgba(255,255,255,0.7)',
+                        transition: 'all 0.2s',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        boxShadow: selectedMood === mood.value ? `0 0 0 3px ${mood.color}20` : 'none'
+                      }}
+                    >
+                      <div style={{ color: mood.color }}>
+                        {mood.icon}
+                      </div>
+                      <div style={{
+                        fontSize: '0.75rem',
+                        fontWeight: '500',
+                        color: '#374151'
+                      }}>{mood.label}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Note Input */}
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  color: '#374151',
+                  marginBottom: '0.5rem'
+                }}>
+                  Add a note (optional)
+                </label>
+                <textarea
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                  placeholder="What's on your mind? Any specific reason for this mood?"
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '12px',
+                    fontSize: '1rem',
+                    minHeight: '100px',
+                    resize: 'vertical',
+                    background: 'rgba(255,255,255,0.7)',
+                    outline: 'none',
+                    transition: 'all 0.2s'
+                  }}
+                  rows={3}
+                />
+              </div>
+
+              {/* Save Button */}
+              <button
+                onClick={saveMood}
+                disabled={!selectedMood}
+                style={{
+                  width: '100%',
+                  background: selectedMood 
+                    ? `linear-gradient(135deg, ${selectedMoodData.color} 0%, #ec4899 100%)`
+                    : '#e5e7eb',
+                  color: 'white',
+                  padding: '0.875rem',
+                  borderRadius: '12px',
+                  fontWeight: '600',
+                  fontSize: '1rem',
+                  border: 'none',
+                  cursor: selectedMood ? 'pointer' : 'not-allowed',
+                  transition: 'all 0.2s',
+                  opacity: selectedMood ? 1 : 0.7,
+                  boxShadow: selectedMood ? '0 4px 12px rgba(236, 72, 153, 0.3)' : 'none',
+                  marginTop: '0.5rem'
+                }}
+              >
+                Save Mood Entry
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Stats Card */}
+        {/* Right Column - Mood History */}
         <div style={{
           background: 'rgba(255, 255, 255, 0.9)',
           borderRadius: '16px',
           padding: '1.5rem',
           boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          backdropFilter: 'blur(8px)'
-        }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            marginBottom: '1.25rem'
-          }}>
-            <Calendar color="#3b82f6" size={22} />
-            <h3 style={{
-              fontSize: '1.125rem',
-              fontWeight: '600',
-              color: '#1f2937',
-              margin: 0
-            }}>Weekly Summary ({stats.total} entries)</h3>
-          </div>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-            gap: '1rem'
-          }}>
-            {moodOptions.slice(0, 4).map(mood => {
-              const count = stats.counts[mood.value] || 0;
-              return (
-                <div key={mood.value} style={{
-                  background: mood.bg,
-                  borderRadius: '12px',
-                  padding: '1rem',
-                  textAlign: 'center',
-                  border: `1px solid rgba(255,255,255,0.3)`,
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
-                }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'center',
-                    marginBottom: '0.5rem',
-                    color: mood.color
-                  }}>
-                    {mood.icon}
-                  </div>
-                  <div style={{
-                    fontSize: '0.875rem',
-                    fontWeight: '500',
-                    color: '#374151',
-                    marginBottom: '0.25rem'
-                  }}>{mood.label}</div>
-                  <div style={{
-                    fontSize: '1.25rem',
-                    fontWeight: '700',
-                    color: '#111827'
-                  }}>{count}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Add Mood Form */}
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.9)',
-          borderRadius: '16px',
-          padding: '1.75rem',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          backdropFilter: 'blur(8px)'
-        }}>
-          <h3 style={{
-            fontSize: '1.25rem',
-            fontWeight: '600',
-            color: '#1f2937',
-            marginBottom: '1.5rem'
-          }}>How are you feeling today?</h3>
-          
-          <div style={{ display: 'grid', gap: '1.5rem' }}>
-            {/* Date Input */}
-            <div>
-              <label style={{
-                display: 'block',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                color: '#374151',
-                marginBottom: '0.5rem'
-              }}>Date</label>
-              <input
-                type="date"
-                value={currentDate}
-                onChange={(e) => setCurrentDate(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '12px',
-                  fontSize: '1rem',
-                  background: 'rgba(255,255,255,0.7)',
-                  outline: 'none',
-                  transition: 'all 0.2s'
-                }}
-              />
-            </div>
-
-            {/* Mood Selection */}
-            <div>
-              <label style={{
-                display: 'block',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                color: '#374151',
-                marginBottom: '0.75rem'
-              }}>Select your mood</label>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
-                gap: '0.75rem'
-              }}>
-                {moodOptions.map(mood => (
-                  <button
-                    key={mood.value}
-                    onClick={() => setSelectedMood(mood.value)}
-                    style={{
-                      padding: '1rem',
-                      borderRadius: '12px',
-                      border: `1px solid ${selectedMood === mood.value ? mood.color : '#e5e7eb'}`,
-                      background: selectedMood === mood.value ? mood.bg : 'rgba(255,255,255,0.7)',
-                      transition: 'all 0.2s',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      boxShadow: selectedMood === mood.value ? `0 0 0 3px ${mood.color}20` : 'none'
-                    }}
-                  >
-                    <div style={{ color: mood.color }}>
-                      {mood.icon}
-                    </div>
-                    <div style={{
-                      fontSize: '0.75rem',
-                      fontWeight: '500',
-                      color: '#374151'
-                    }}>{mood.label}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Note Input */}
-            <div>
-              <label style={{
-                display: 'block',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                color: '#374151',
-                marginBottom: '0.5rem'
-              }}>
-                Add a note (optional)
-              </label>
-              <textarea
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                placeholder="What's on your mind? Any specific reason for this mood?"
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '12px',
-                  fontSize: '1rem',
-                  minHeight: '100px',
-                  resize: 'vertical',
-                  background: 'rgba(255,255,255,0.7)',
-                  outline: 'none',
-                  transition: 'all 0.2s'
-                }}
-                rows={3}
-              />
-            </div>
-
-            {/* Save Button */}
-            <button
-              onClick={saveMood}
-              disabled={!selectedMood}
-              style={{
-                width: '100%',
-                background: selectedMood 
-                  ? `linear-gradient(135deg, ${selectedMoodData.color} 0%, #ec4899 100%)`
-                  : '#e5e7eb',
-                color: 'white',
-                padding: '0.875rem',
-                borderRadius: '12px',
-                fontWeight: '600',
-                fontSize: '1rem',
-                border: 'none',
-                cursor: selectedMood ? 'pointer' : 'not-allowed',
-                transition: 'all 0.2s',
-                opacity: selectedMood ? 1 : 0.7,
-                boxShadow: selectedMood ? '0 4px 12px rgba(236, 72, 153, 0.3)' : 'none',
-                marginTop: '0.5rem'
-              }}
-            >
-              Save Mood Entry
-            </button>
-          </div>
-        </div>
-
-        {/* Mood History */}
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.9)',
-          borderRadius: '16px',
-          padding: '1.75rem',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          backdropFilter: 'blur(8px)'
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          flexDirection: 'column'
         }}>
           <h3 style={{
             fontSize: '1.25rem',
@@ -353,13 +367,25 @@ export default function MoodTracker() {
             <div style={{
               textAlign: 'center',
               padding: '2rem 0',
-              color: '#6b7280'
+              color: '#6b7280',
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}>
               <Smile size={48} color="#d1d5db" style={{ margin: '0 auto 1rem' }} />
               <p>No mood entries yet. Start tracking your emotions!</p>
             </div>
           ) : (
-            <div style={{ display: 'grid', gap: '0.75rem' }}>
+            <div style={{ 
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+              overflowY: 'auto',
+              flex: 1,
+              paddingRight: '0.5rem'
+            }}>
               {moods.slice(0, 10).map(mood => {
                 const moodData = moodOptions.find(m => m.value === mood.mood) || moodOptions[3];
                 return (
