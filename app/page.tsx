@@ -29,6 +29,7 @@ const moodOptions: MoodOption[] = [
   { value: 'okay', label: 'Okay', icon: <Meh size={20} />, color: '#6b7280', bg: 'rgba(107, 114, 128, 0.1)' },
   { value: 'sad', label: 'Sad', icon: <CloudRain size={20} />, color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)' },
   { value: 'angry', label: 'Angry', icon: <Zap size={20} />, color: '#ef4444', bg: 'rgba(239, 68, 68, 0.1)' },
+  { value: 'anxious', label: 'Anxious', icon: <Frown size={20} />, color: '#d946ef', bg: 'rgba(217, 70, 239, 0.1)' }
 ];
 
 export default function MoodTracker() {
@@ -160,10 +161,10 @@ export default function MoodTracker() {
             
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
               gap: '1rem'
             }}>
-              {moodOptions.slice(0, 4).map(mood => {
+              {moodOptions.map(mood => {
                 const count = stats.counts[mood.value] || 0;
                 return (
                   <div key={mood.value} style={{
@@ -253,7 +254,7 @@ export default function MoodTracker() {
                 }}>Select your mood</label>
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
                   gap: '0.75rem'
                 }}>
                   {moodOptions.map(mood => (
