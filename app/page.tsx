@@ -23,7 +23,7 @@ type MoodOption = {
   bg: string;
 };
 
-const MoodTracker = () => {
+export default function MoodTracker() {
   const [moods, setMoods] = useState<Mood[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [note, setNote] = useState<string>('');
@@ -177,7 +177,7 @@ const MoodTracker = () => {
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="What's on your mind? Any specific reason for this mood?"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                rows={3}  {/* Fixed: Changed from "3" to {3} */}
+                rows={3}
               />
             </div>
 
@@ -242,6 +242,4 @@ const MoodTracker = () => {
       </div>
     </div>
   );
-};
-
-export default MoodTracker;
+}
