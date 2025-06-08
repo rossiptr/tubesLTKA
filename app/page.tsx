@@ -5,6 +5,7 @@ import {
   Calendar, Smile, Frown, Meh, Heart, Star,
   Sun, Cloud, CloudRain, Zap
 } from 'lucide-react';
+import { LucideProps } from 'lucide-react';
 
 type Mood = {
   id: number;
@@ -17,7 +18,7 @@ type Mood = {
 type MoodOption = {
   value: string;
   label: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<LucideProps>;
   color: string;
   bg: string;
 };
